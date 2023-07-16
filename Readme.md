@@ -3,7 +3,7 @@
 
 Automatically generates static developer documentation for either, a single PHP class or all classes within a project directory.  Theme based allowing results to be easily styled any way you wish, and comes with support for basic HTML, markdown and Syrus formats.
 
-Some example of generated docuemation:
+Some example of generated documentation:
 
 Class: [https://apexpl.io/docs/classes/svc/convert/](https://apexpl.io/docs/classes/svc/convert/)
 
@@ -13,16 +13,14 @@ Method: [https://apexpl.io/docs/classes/svc/convert/case](https://apexpl.io/docs
 
 Install via Composer with:
 
-> `composer require apex/docs-generator
+> `composer require apex/docs-generator`
 
 ## Table of Contents
 
 You will only ever need two methods within the the `Apex\Docs\DocsGenerator` class:
 
-* 
-
 * [generateClass()](https://github.com/apexpl/docs-generator/blob/master/docs/generateclass.md)
-* [generateDirectory()](https://github.com/apexpl/docs-generator/blob/master/docs/generateDirectory.md)
+* [generateDirectory()](https://github.com/apexpl/docs-generator/blob/master/docs/generatedirectory.md)
 
 
 ## Usage
