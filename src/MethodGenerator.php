@@ -219,9 +219,10 @@ class MethodGenerator
         foreach ($also_names as $name) {
 
             if ($theme == 'markdown') {
-                $also_html .= "* [" . $name . "{}])" . strtolower($name) . ")\n";
+                $also_html .= "* [" . $name . "()](" . strtolower($name) . ")\n";
             } elseif ($theme == 'syrus') {
-                $also_html .= "    <s:also>$name</s:also>\n";
+                $also_html .= "    <s:also>[" . $name . "()](" . strtolower($name) . ")</s:also>\n";
+                //$also_html .= "    <s:also>$name</s:also>\n";
             } else {
                 $also_html .= "    <li><a href=\"" . strtolower($name) . "\">" . $name . "()</a></li>\n";
             }
