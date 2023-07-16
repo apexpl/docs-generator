@@ -13,7 +13,6 @@
 
 Parameter | Required | Type | Description
 ------------- |------------- |------------- |------------- 
-
 class_name | Yes | string | Fully qualified class name to generate docs for.
 dest_dir | Yes | string | Destination directory to save documenation files.
 base_uri | No | string | The base URI corresponding to the destination directory, used to correctly link to other pages.

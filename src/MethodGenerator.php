@@ -62,7 +62,7 @@ class MethodGenerator
         if ($param_html == '') {
             $html = preg_replace("/<if_has_params>(.*?)<\/if_has_params>/si", '', $html);
         } else {
-            $html = str_replace($param_match[0], rtrim($param_html), $html);
+            $html = str_replace("\n" . $param_match[0], rtrim($param_html), $html);
             $html = preg_replace("/<(\/?)if_has_params>\n/", "", $html);
         }
 

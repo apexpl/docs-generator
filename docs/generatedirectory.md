@@ -13,7 +13,6 @@
 
 Parameter | Required | Type | Description
 ------------- |------------- |------------- |------------- 
-
 source_dir | Yes | string | Directory to generate documentation for.
 dest_dir | Yes | string | Destination directory to save documentation files.
 base_namespace | Yes | string | The namespace that corresponds to the source directory.
