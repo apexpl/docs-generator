@@ -1,0 +1,59 @@
+
+<html>
+<head>
+    <title>~class_short_name~::~method_name~ ~title~</title>
+</head>
+
+<body>
+
+<h1>~class_short_name~::~method_name~ ~title~</h1>
+
+<h3>Usage</h3>
+<blockquote>
+    ~usage~<br />
+</blockquote>
+
+<h3>Description</h3>
+<blockquote>
+    ~description~<br /><br />
+</blockquote>
+
+<if_has_params>
+<h3>Parameters</h3>
+
+<table class="table table-bordered table-striped table-hover" id="~id~"><thead>
+<tr>
+    <th class="boxheader">Parameter</th>
+    <th class="boxheader">Required</th>
+    <th class="boxheader">Type</th>
+    <th class="boxheader">Description<?th>
+</thead></tbody>
+
+<parameters>
+<tr>
+    <td>~name~</td>
+    <td>~required~</td>
+    <td>~type~</td>
+    <td>~description~</td>
+</tr>
+</parameters>
+
+</tbody></table><br />
+</if_has_params>
+
+<if_has_return>
+<h3>Return</h3>
+<blockquote>
+    ~return~<br />
+</blockquote>
+</if_has_return>
+
+<h3>See Also</h3>
+<ul>
+~see_also~
+</ul><br />
+
+</body>
+</html>
+
+

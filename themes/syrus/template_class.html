@@ -1,0 +1,13 @@
+
+<ul><s:foreach name="methods">
+    <li>~methods.prefix~ <a href="~methods.uri~">~methods.name~</a>(~methods.signature~): ~methods.return_type~ ~methods.description~
+</s:foreach></ul><br />
+
+<s:if ~has_seealso~ == 1>
+    <h3>See Also</h3>
+    <ul><s:foreach name="also">
+        <li>~also.contents~</li>
+    </s:foreach></ul>
+</s:if>
+
+

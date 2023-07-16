@@ -1,0 +1,54 @@
+
+<h3>Usage</h3>
+~usage~<br />
+
+<h3>Description</h3>
+~description~<br />
+
+
+<s:if ~has_params~ == 1>
+    <h3>Parameters</h3>
+
+    <s:data_table><thead><tr>
+        <th>Parameter</th>
+        <th>Required</th>
+        <th>Type</th>
+        <th>Description</th.
+    </tr></thead><tbody>
+
+    <s:foreach name="params">
+    <tr>
+        <td>$~params.name~</td>
+        <td>~params.required~</td>
+        <td>~params.type~</td>
+        <td>~params.description~</td>
+    </tr>
+    </s:foreach>
+    </tbody></s:data_table><br />
+</s:if>
+
+<s:if ~has_return~ == 1>
+    <h3>Return Value</h3>
+    ~return~<br />
+</s:if>
+
+
+<s:if ~has_examples~ == 1>
+    <h3>Examples</h3>
+
+    <s:foreach name="examples">
+        <p><b>~examples.title~</b></p>
+<s:markdown>
+~examples.code~
+</s:markdown>
+    </s:foreach>
+</s:if>
+
+<s:if ~has_seealso~ == 1>
+    <h3>See Also</h3>
+    <ul><s:foreach name="also">
+        <li>~also.contents~</li>
+    </s:foreach></ul>
+</s:if>
+
+

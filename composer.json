@@ -1,0 +1,28 @@
+{
+    "name": "apex/docs-generator", 
+    "description": "Automatically generate docs for all classes and methods",
+    "type": "package",
+    "homepage": "https://apexpl.io",
+    "authors": [
+        {
+            "name": "Matt Dizak", 
+            "email": "matt@apexpl.io"
+        }
+    ], 
+    "license": "MIT",
+    "require": {
+        "php": ">=8.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "apex/signer": "^2.0"
+    },
+    "suggest": {
+        "apex/syrus": "^2.1"
+    },
+    "autoload": {
+        "psr-4": { 
+            "Apex\\Docs\\": "src/"
+        }
+    }
+}
