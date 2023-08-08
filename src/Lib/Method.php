@@ -27,7 +27,7 @@ class Method
     /**
      * toArray
      */
-    public function toArray(): array
+    public function toArray(bool $include_file_ext = false, string $ext = 'html'): array
     {
 
         // Set vars
@@ -39,8 +39,12 @@ class Method
         // Set additional vars
         $vars['~is_static_string~'] = $this->is_static === true ? ' static' : '';
         $vars['~is_static~'] = $this->is_static === true ? '1' : '0';
-        $vars['~name_lower~'] = strtolower($this->name);
         $vars['~signature~'] = str_replace("\$", "&#36;", $this->signature);
+        $vars['~name_lower~'] = strtolower($this->name);
+        if ($include_file_ext === true) {
+            $vars['~name_lower~'] .= $ext;
+        }
+
         // Return
         return $vars;
     }

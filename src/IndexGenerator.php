@@ -56,8 +56,6 @@ class IndexGenerator
             // Process parent namespace as necessary
             if ($parent != '') {
 
-                // Get parent uri
-
                 // Generate index for parent
                 $parent_uri = $base_uri . '/' . strtolower(str_replace("\\", "/", $parent) . '/');
                 $parent_dest_dir = $dest_dir . '/' . strtolower(str_replace("\\", "/", $parent));

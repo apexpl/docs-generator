@@ -19,7 +19,7 @@ class DocsGenerator
      * @param string $base_uri The base URI corresponding to the destination directory, used to correctly link to other pages.
      * @param string $theme Theme to use, sub-directory of /themes/ directory.  Supported values are -- html, markdown, syrus.
     */
-    public function generateClass(string $class_name, string $dest_dir, string $base_uri = '/docs/', string $theme = 'html'): void
+    public function generateClass(string $class_name, string $dest_dir, string $base_uri = '/docs/', string $theme = 'html', bool $include_file_ext = false): void
     {
 
         // Ensure class exists
@@ -61,7 +61,7 @@ class DocsGenerator
         // Compile list of methods
         $methods_html = '';
         foreach ($method_names as $name) {
-            $methods_html .= rtrim(strtr($method_match[1], $toc[$name]->toArray()));
+            $methods_html .= rtrim(strtr($method_match[1], $toc[$name]->toArray($include_file_ext, $ext)));
         }
         $html = str_replace($method_match[0], rtrim($methods_html), $html);
 
@@ -88,7 +88,7 @@ class DocsGenerator
      * @param string $base_uri The base URI corresponding to the destination directory, used to correctly link to other pages.
      * @param string $theme Theme to use, sub-directory of /themes/ directory.  Supported values are -- html, markdown, syrus.
      */
-    public function generateDirectory(string $source_dir, string $dest_dir, string $base_namespace, string $base_uri = '/docs/', string $theme = 'html'): void
+    public function generateDirectory(string $source_dir, string $dest_dir, string $base_namespace, string $base_uri = '/docs/', string $theme = 'html', bool $include_file_ext = false): void
     {
 
         // Ensure source dir exists
@@ -122,7 +122,7 @@ class DocsGenerator
             // Generate class
             $class_dir = $dest_dir . '/' . strtolower(preg_replace("/\.php$/", "", ltrim($file, '/')));
             $class_uri = $base_uri . '/' . strtolower(preg_replace("/\.php$/", "", ltrim($file, '/')));
-            $this->generateClass($class_name, $class_dir, $class_uri, $theme);
+            $this->generateClass($class_name, $class_dir, $class_uri, $theme, $include_file_ext);
         }
 
         // Generate index
