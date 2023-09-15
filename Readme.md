@@ -76,7 +76,7 @@ Within this array, add the entry:
 That's it.  When generating documentation simply change the `$theme` paramter from "html" to "syrus", and it wll generate the documenation formatted for Syrus.
 
 
-# Apex
+## Apex
 
 Brought to you by Apex Framework at [https://apexpl.io/](https://apexpl.io/).
 

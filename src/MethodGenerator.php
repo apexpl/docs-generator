@@ -170,6 +170,8 @@ class MethodGenerator
                 $def = 'false';
             } elseif ($def === null) {
                 $def = 'null';
+            } elseif ($param->isDefaultValueConstant()) {
+                $def = '';
             } else {
                 $def = is_array($def) ? '[]' : "'" . $def . "'";
             }

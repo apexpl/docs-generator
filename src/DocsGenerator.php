@@ -61,7 +61,12 @@ class DocsGenerator
         // Compile list of methods
         $methods_html = '';
         foreach ($method_names as $name) {
-            $methods_html .= rtrim(strtr($method_match[1], $toc[$name]->toArray($include_file_ext, $ext)));
+            $methods_html .= trim(strtr($method_match[1], $toc[$name]->toArray($include_file_ext, $ext)));
+            if ($include_file_ext === true) { 
+                $methods_html .= $ext;
+        }
+            $methods_html .= "\n";
+
         }
         $html = str_replace($method_match[0], rtrim($methods_html), $html);
 
@@ -70,11 +75,12 @@ class DocsGenerator
             '~class_name~' => $obj->name,
             '~title~' => $doc->title,
             '~description~' => $doc->description,
-            '~base_uri~' => $base_uri
+            //'~base_uri~' => $base_uri
+            '~base_uri~' => ''
         ];
         $html = strtr($html, $replace);
 
-        // Sve html file
+        // Save html file
         $filename = "$dest_dir/index" . $ext;
         file_put_contents($filename, $html);
     }
@@ -127,7 +133,7 @@ class DocsGenerator
 
         // Generate index
         $index_gen = new IndexGenerator();
-        $index_gen->generate($classes, $dest_dir, $base_namespace, $base_uri, $theme);
+        $index_gen->generate($classes, $dest_dir, $base_namespace, $base_uri, $theme, $include_file_ext);
     }
 
     /**

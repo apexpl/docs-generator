@@ -4,7 +4,7 @@
 > ~description~
 
 <methods>
-* ~visibility~ ~is_static_string~[~name~](~base_uri~/~name_lower~)(~signature~): ~return_type~
+* ~visibility~ ~is_static_string~[~name~](~name_lower~)(~signature~): ~return_type~
 </methods>
 
 

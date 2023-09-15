@@ -12,7 +12,7 @@ class IndexGenerator
     /**
      * Generate index for directory of documentation
      */
-    public function generate(array $class_names, string $dest_dir, string $base_namespace, string $base_uri = '/docs/', string $theme = 'html'): void
+    public function generate(array $class_names, string $dest_dir, string $base_namespace, string $base_uri = '/docs/', string $theme = 'html', bool $include_file_ext = false): void
     {
 
         // Get html
@@ -36,7 +36,7 @@ class IndexGenerator
 
         // Generate html
         $contents = '';
-        foreach ($results as $parent => $classes) {
+        foreach ($results as                                   $parent => $classes) {
 
             // Get indent
             $level = substr_count(trim($parent, "\\"), "\\");
@@ -45,6 +45,9 @@ class IndexGenerator
             // Single class
             if (count($classes) == 1) {
                 $path = $base_uri . '/' . strtolower(str_replace("\\", "/", $classes[0])) . "/";
+                if ($include_file_ext === true) {
+                    $path .= 'index.' . $ext;
+                }
                 if ($theme == 'html') {
                     $contents .= $indent . "<li><a href=\"$path\">$classes[0]</a></li>\n";
                 } else {
