@@ -133,7 +133,7 @@ class DocBlock
                     $vars = preg_split("/\W+/", $description, 3);
                     $data_type = $vars[0];
                     $name = str_replace("\$", '', $vars[1]);
-                    $description = $vars[2];
+                    $description = $vars[2] ?? '';
                 }
             } else if ($type == 'param' || $type == 'return') {
                 $description .= ' ' . trim($line);

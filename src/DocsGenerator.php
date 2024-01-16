@@ -19,11 +19,11 @@ class DocsGenerator
      * @param string $base_uri The base URI corresponding to the destination directory, used to correctly link to other pages.
      * @param string $theme Theme to use, sub-directory of /themes/ directory.  Supported values are -- html, markdown, syrus.
     */
-    public function generateClass(string $class_name, string $dest_dir, string $base_uri = '/docs/', string $theme = 'html', bool $include_file_ext = false): void
+    public function generateClass(string $class_name, string $dest_dir, string $base_uri = '/docs/', string $theme = 'html', bool $include_file_ext = false, array $see_also = []): void
     {
 
         // Ensure class exists
-        if (!class_exists($class_name)) {
+        if ((!class_exists($class_name)) && (!interface_exists($class_name))) {
             throw new \Exception("No class exists at, $class_name");
         }
         $base_uri = rtrim($base_uri, '/');
@@ -45,7 +45,7 @@ class DocsGenerator
         // Go through methods
         $toc = [];
         foreach ($obj->getMethods() as $method) {
-            $res = $method_generator->generate($method, $dest_dir, $theme);
+            $res = $method_generator->generate($method, $dest_dir, $theme, $include_file_ext, $see_also);
             $toc[$res->name] = $res;
         }
 
@@ -158,7 +158,7 @@ class DocsGenerator
         $class_name .= "\\" . $match[1];
 
         // Check class exists
-        if (!class_exists($class_name)) {
+        if ((!class_exists($class_name)) && (!interface_exists($class_name))) {
             return null;
         }
 

@@ -14,7 +14,7 @@ class MethodGenerator
     /**
      * Generate method
      */
-    public function generate(\ReflectionMethod $method, string $dest_dir, string $theme = 'html'): Method
+    public function generate(\ReflectionMethod $method, string $dest_dir, string $theme = 'html', bool $include_file_ext = false, array $see_also = []): Method
     {
 
         // GEt html
@@ -83,7 +83,7 @@ class MethodGenerator
             '~usage~' => $usage,
             '~description~' => $doc->description,
             '~return~' => $return,
-            '~see_also~' => $this->createSeeAlso($method, $obj, $theme)
+            '~see_also~' => $this->createSeeAlso($method, $obj, $theme, $include_file_ext, $see_also)
         ];
         $html = strtr($html, $replace);
 
@@ -202,14 +202,19 @@ class MethodGenerator
     /**
      * Generate see also
      */
-    private function createSeeAlso(\ReflectionMethod $method, \ReflectionClass $obj, string $theme): string
+    private function createSeeAlso(\ReflectionMethod $method, \ReflectionClass $obj, string $theme, bool $include_file_ext = false, array $see_also = []): string
     {
+
+        // Init
+        $ext = $theme == 'markdown' ? '.md' : '.html';
 
         // GO through methods
         $also_names = [];
         foreach ($obj->getMethods() as $also) {
 
             if ($also->getName() == $method->getName() || $also->getName() == '__construct') {
+                continue;
+            } elseif (count($see_also) > 0 && !in_array($also->getName(), $see_also)) {
                 continue;
             }
             $also_names[] = $also->getName();
@@ -220,13 +225,20 @@ class MethodGenerator
         sort($also_names);
         foreach ($also_names as $name) {
 
+            // Get filename
+            $filename = strtolower($name);
+            if ($include_file_ext === true) {
+                $filename .= $ext;
+            }
+
+            // Add html
             if ($theme == 'markdown') {
-                $also_html .= "* [" . $name . "()](" . strtolower($name) . ")\n";
+                $also_html .= "* [" . $name . "()](" . $filename . ")\n";
             } elseif ($theme == 'syrus') {
-                $also_html .= "    <s:also>[" . $name . "()](" . strtolower($name) . ")</s:also>\n";
+                $also_html .= "    <s:also>[" . $name . "()](" . $filename . ")</s:also>\n";
                 //$also_html .= "    <s:also>$name</s:also>\n";
             } else {
-                $also_html .= "    <li><a href=\"" . strtolower($name) . "\">" . $name . "()</a></li>\n";
+                $also_html .= "    <li><a href=\"" . $filename . "\">" . $name . "()</a></li>\n";
             }
         }
 
